@@ -2,16 +2,31 @@ import './style.css'
 import { getWhether } from './whether'
 import { ICON_MAP } from './iconmap';
 
-getWhether(20,78,Intl.DateTimeFormat().resolvedOptions().timeZone).then(renderWeather).catch(
-    e=>{
-        console.error(e);
-        alert("Error getting wheather")
-    }
-)
+navigator.geolocation.getCurrentPosition(positionSuccess, positionError)
+
+function positionSuccess({ coords }) {
+  getWhether(
+    coords.latitude,
+    coords.longitude,
+    Intl.DateTimeFormat().resolvedOptions().timeZone
+  )
+    .then(renderWeather)
+    .catch(e => {
+      console.error(e)
+      alert("Error getting weather.")
+    })
+}
+
+function positionError() {
+  alert(
+    "There was an error getting your location. Please allow us to use your location and refresh the page."
+  )
+}
 function renderWeather({current,daily,hourly}) {
     renderCurrentWeather(current),
     renderDailyWeather(daily),
     renderHourlyWeather(hourly)
+    document.body.classList.remove("blurred")
 }
 function setValue(selector,value,{parent=document}={}){
     parent.querySelector(`[data-${selector}]`).textContent=value
@@ -34,6 +49,7 @@ const DAY_FORMATER=new Intl.DateTimeFormat(undefined,{weekday:"long"})
 const dailySection=document.querySelector("[data-day-section]")
 const dayCardTemplate=document.getElementById("day-card-template")
 function renderDailyWeather(daily){
+    console.log(daily);
     dailySection.innerHTML=" "
     daily.forEach(day => {
         const element=dayCardTemplate.content.cloneNode(true)
