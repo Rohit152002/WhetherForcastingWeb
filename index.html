@@ -8,7 +8,7 @@
   <body>
     <header class="header">
       <div class="header-left">
-        <img class="whether-icon-large" src="/icons/sun-solid.svg" data-current-icon>
+        <img class="whether-icon large" src="/icons/sun-solid.svg" data-current-icon>
         <div class="header-current-temp"><span data-current-temp>31</span>&deg;
         </div>
       </div>
@@ -39,7 +39,7 @@
           </div>
       </div>
     </header>
-    <section class="day-section">
+    <section class="day-section" data-day-section>
       <div class="day-card">
         <img src="/icons/cloud-bolt-solid.svg" class="whether-icon">
         <div class="day-card-day">Monday</div>
@@ -220,7 +220,50 @@
         </tr>
       </tbody>
     </table>
-
+    <template id="day-card-template">
+      <div class="day-card">
+        <img data-icon class="whether-icon">
+        <div class="day-card-day" data-date></div>
+        <div><span data-temp></span><span>&deg;</span></div>
+      </div>
+    </template>
+    <template id="hour-row-template">
+      <tr class="hour-row">
+        <td>
+          <div class="info-group">
+            <div class="label" data-date></div>
+            <span data-time></span>
+          </div>
+        </td>
+        <td>
+          <img data-icon class="whether-icon">
+        </td>
+        <td>
+          <div class="info-group">
+            <div class="label" >Temp</div>
+            <div><span data-temp></span><span>&deg;</span></div>
+          </div>
+        </td>
+        <td>
+          <div class="info-group">
+            <div class="label">FL Temp</div>
+            <div><span data-fl-temp></span><span>&deg;</span></div>
+          </div>
+        </td>
+        <td>
+          <div class="info-group">
+            <div class="label">Wind</div>
+            <div><span data-wind></span><span class="value-sub-info">mph</span></div>
+          </div>
+        </td>
+        <td>
+          <div class="info-group">
+            <div class="label">Pricip</div>
+            <div><span data-pricip></span><span class="value-sub-info">in</span></div>
+          </div>
+        </td>
+      </tr>
+    </template>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

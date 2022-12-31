@@ -6,7 +6,7 @@ body{
   color: hsl(200 100% 10%);
   font-family: sans-serif;
 }
-.header{
+.header{ 
   display: flex;
   align-items: center;
 }
@@ -24,7 +24,7 @@ body{
   height: 40px;
   object-fit: contain;
 }
-.whether-icon-large{
+.whether-icon.large{
   width: 80px;
   height: 80px;
 }
